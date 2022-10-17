@@ -1,18 +1,7 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+using System;
 
-public class EventManager : MonoBehaviour
+public static partial class EventManager
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+    public static event Action OnStartGame;
+    public static void Fire_OnStartGame() { OnStartGame?.Invoke(); }
 }
