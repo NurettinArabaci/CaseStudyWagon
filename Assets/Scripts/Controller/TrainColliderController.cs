@@ -6,24 +6,23 @@ public class TrainColliderController : MonoBehaviour
 {
     private void OnTriggerEnter(Collider coll)
     {
-        if (TryGetComponent(out ICollectable collectable))
+        if (coll.TryGetComponent(out ICollectable collectable))
         {
             collectable.OnCollected();
             
         }
 
-        else if(TryGetComponent(out IAttackable attackable))
+        else if(coll.TryGetComponent(out IAttackable attackable))
         {
             attackable.Attack();
         }
 
-        else if (TryGetComponent(out GateController gateController))
+        else if (coll.TryGetComponent(out GateController gateController))
         {
-            if (gateController.gateType == GateType.StickmanGate)
-                GameStateEvent.Fire_OnChangeGameState(GameState.Stickman);
-
-            else if (gateController.gateType == GateType.CoalGate)
-                GameStateEvent.Fire_OnChangeGameState(GameState.Coal);
+            EventManager.Fire_OnMiniGame();
+            StartCoroutine(gateController.ChangeGameStateCR());
         }
     }
+
+    
 }

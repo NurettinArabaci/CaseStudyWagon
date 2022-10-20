@@ -6,8 +6,7 @@ public enum GameState
 {
     Begin,
     Play,
-    Stickman,
-    Coal,
+    Minigame,
     Win,
     Lose
 }
@@ -18,6 +17,7 @@ public static partial class GameStateEvent
     public static void Fire_OnChangeGameState(GameState gameState) { OnChangeGameState?.Invoke(gameState); }
 }
 
+
 public class GameManager : MonoSingleton<GameManager>
 {
     public GameState gameState;
@@ -26,6 +26,11 @@ public class GameManager : MonoSingleton<GameManager>
     {
         base.Awake();
         GameStateEvent.OnChangeGameState += OnChangeGameState;
+    }
+
+    private void Start()
+    {
+        OnChangeGameState(GameState.Begin);
     }
 
     void OnChangeGameState(GameState newState)
@@ -42,12 +47,8 @@ public class GameManager : MonoSingleton<GameManager>
                 HandlePlay();
                 break;
 
-            case GameState.Stickman:
-                HandleChooseStickman();
-                break;
-
-            case GameState.Coal:
-                HandleChooseCoal();
+            case GameState.Minigame:
+                HandleMinigame();
                 break;
 
             case GameState.Win:
@@ -63,32 +64,29 @@ public class GameManager : MonoSingleton<GameManager>
         }
     }
 
+    
+
     public void HandleBegin()
     {
         EventManager.Fire_OnBeginGame();
     }
 
-    void HandlePlay()
+    public void HandlePlay()
     {
         EventManager.Fire_OnPlayGame();
     }
 
-    void HandleChooseStickman()
+    public void HandleMinigame()
     {
-        EventManager.Fire_OnChooseSticmanAction();
+        EventManager.Fire_OnMiniGame();
     }
 
-    void HandleChooseCoal()
-    {
-        EventManager.Fire_OnChooseCoalAction();
-    }
-
-    void HandleWin()
+    public void HandleWin()
     {
         EventManager.Fire_OnWin();
     }
 
-    void HandleLose()
+    public void HandleLose()
     {
         EventManager.Fire_OnLose();
     }

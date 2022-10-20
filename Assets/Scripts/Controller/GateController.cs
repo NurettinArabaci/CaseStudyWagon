@@ -8,60 +8,21 @@ public class GateController : MonoBehaviour
 {
     public GateType gateType;
 
-    private void Awake()
+
+    private void OnTriggerEnter(Collider coll)
     {
-        SubscribeEvents();
-    }
-
-    void OnChooseSticmanAction()
-    {
-
-    }
-
-    void OnChooseCoalAction()
-    {
-
-    }
-
-
-    #region EventsSubsAction
-
-    void SubscribeEvents()
-    {
-        switch (gateType)
+        if (coll.TryGetComponent(out Carriage carriage))
         {
-            case GateType.StickmanGate:
-                EventManager.OnChooseSticmanAction += OnChooseSticmanAction;
-                break;
-
-            case GateType.CoalGate:
-                EventManager.OnChooseCoalAction += OnChooseCoalAction;
-                break;
-
-            default:
-                break;
+            carriage.ChangeCarriageType(gateType);
         }
     }
-    void UnSubscribeEvents()
+
+    
+    public IEnumerator ChangeGameStateCR()
     {
-        switch (gateType)
-        {
-            case GateType.StickmanGate:
-                EventManager.OnChooseSticmanAction -= OnChooseSticmanAction;
-                break;
+        GameStateEvent.Fire_OnChangeGameState(GameState.Minigame);
 
-            case GateType.CoalGate:
-                EventManager.OnChooseCoalAction -= OnChooseCoalAction;
-                break;
-
-            default:
-                break;
-        }
-    }
-    #endregion
-
-    private void OnDisable()
-    {
-        UnSubscribeEvents();
+        yield return new WaitForSeconds(2.5f);
+        GameStateEvent.Fire_OnChangeGameState(GameState.Play);
     }
 }
