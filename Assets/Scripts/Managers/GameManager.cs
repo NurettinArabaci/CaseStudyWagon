@@ -100,6 +100,7 @@ public class GameManager : MonoSingleton<GameManager>
     public void HandleWin()
     {
         EventManager.Fire_OnWin();
+        EventManager.Fire_OnConfettiPlay();
     }
 
     public void HandleLose()

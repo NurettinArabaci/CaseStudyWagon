@@ -19,7 +19,7 @@ public class CameraController : MonoSingleton<CameraController>
 
         EventManager.OnBeginGame += OnStartGame;
         EventManager.OnPlayGame += OnPlayCam;
-        EventManager.OnWin += OnGameEndCam;
+        EventManager.OnGameEnd += OnGameEndCam;
     }
 
    
@@ -41,8 +41,14 @@ public class CameraController : MonoSingleton<CameraController>
         playCam.m_Priority = 11;
     }
 
-    public void OnGameEndCam()
+    public void OnGameEndCam(Transform tr)
     {
+        StartCoroutine(CamChangeCR());
+    }
+
+    IEnumerator CamChangeCR()
+    {
+        yield return new WaitForSeconds(0.5f);
         gameEndCam.m_Priority = 12;
     }
 
@@ -57,7 +63,7 @@ public class CameraController : MonoSingleton<CameraController>
     {
         EventManager.OnBeginGame -= OnStartGame;
         EventManager.OnPlayGame -= OnPlayCam;
-        EventManager.OnWin -= OnGameEndCam;
+        EventManager.OnGameEnd -= OnGameEndCam;
     }
 
 }

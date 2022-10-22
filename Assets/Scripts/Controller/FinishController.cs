@@ -6,7 +6,6 @@ using DG.Tweening;
 public class FinishController : MonoBehaviour
 {
     [SerializeField] Transform gameEndFirstPoint;
-    [SerializeField] Transform gameEndSecondPoint;
 
     private void Awake()
     {
@@ -15,9 +14,8 @@ public class FinishController : MonoBehaviour
 
     void OnGameEnd(Transform _transform)
     {
-        _transform.DOMove(gameEndFirstPoint.position, 1f).SetEase(Ease.Linear).OnComplete(() =>
-        _transform.DOMove(gameEndSecondPoint.position,1.5f).OnComplete(()=>
-        GameStateEvent.Fire_OnChangeGameState(GameState.Win)));
+        _transform.DOMove(gameEndFirstPoint.position, 2.5f).OnComplete(() =>
+        GameStateEvent.Fire_OnChangeGameState(GameState.Win));
     }
 
 
