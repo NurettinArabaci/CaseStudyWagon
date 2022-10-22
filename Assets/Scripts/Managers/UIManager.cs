@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 
 public class UIManager : MonoSingleton<UIManager>
 {
@@ -15,6 +16,12 @@ public class UIManager : MonoSingleton<UIManager>
     [SerializeField] private Button startButton;
     [SerializeField] private Button nextLevelButton;
     [SerializeField] private Button restartButton;
+
+    [Header("Score")]
+    [Space(10)]
+    [SerializeField] ScoreManager scoreManager;
+    [SerializeField] TextMeshProUGUI _coalScoreText;
+    [SerializeField] TextMeshProUGUI _stickmanScoreText;
 
     protected override void Awake()
     {
@@ -40,7 +47,10 @@ public class UIManager : MonoSingleton<UIManager>
 
     void OnWinGame()
     {
+        _coalScoreText.text = scoreManager.coalScore.ToString();
+        _stickmanScoreText.text = scoreManager.stickmanScore.ToString();
         winPanel.SetActive(true);
+        
     }
 
     void OnLoseGame()

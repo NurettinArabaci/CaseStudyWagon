@@ -30,7 +30,14 @@ public class AddStackCommand
 
         _params._collectables.Add(gO);
 
-        _params._monoBehaviour.StartCoroutine(_params._shakeStackCommand.HandleShakeOfStack());
+        OnShakeStack();
 
+        CameraController.Instance.CamGoBackOnStack();
+
+    }
+
+    public void OnShakeStack()
+    {
+        _params._monoBehaviour.StartCoroutine(_params._shakeStackCommand.HandleShakeOfStack());
     }
 }

@@ -36,7 +36,11 @@ public class Carriage : MonoBehaviour, ICollectable
     }
     void CarriageActiveInactive(GameObject activeObject, GameObject inactiveObject)
     {
-        
+        for (int i = 0; i < 6; i++)
+        {
+            StackOnCarriage.Instance.AddCarriageList(activeObject.transform.GetChild(i).gameObject);
+        }
+
         activeObject.transform.DOScale(0, 0.3f).OnComplete(() =>
         {
             activeObject.SetActive(true);
@@ -52,6 +56,9 @@ public class Carriage : MonoBehaviour, ICollectable
 
         });
     }
+
+    
+    
 
 
 }

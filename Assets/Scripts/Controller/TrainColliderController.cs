@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class TrainColliderController : MonoBehaviour
 {
+    
+
     private void OnTriggerEnter(Collider coll)
     {
         if (coll.TryGetComponent(out ICollectable collectable))
@@ -14,15 +16,25 @@ public class TrainColliderController : MonoBehaviour
 
         else if(coll.TryGetComponent(out IAttackable attackable))
         {
-            attackable.Attack();
+            attackable.Attack(30);
         }
 
         else if (coll.TryGetComponent(out GateController gateController))
         {
-            EventManager.Fire_OnMiniGame();
             StartCoroutine(gateController.ChangeGameStateCR());
+
+            if (gateController.gateType == GateType.StickmanGate) EventManager.Fire_OnChoosedStickmanGate();
+
+            else if (gateController.gateType == GateType.CoalGate) EventManager.Fire_OnChoosedCoalGate();
+        }
+        else if (coll.CompareTag("Finish"))
+        {
+            GameStateEvent.Fire_OnChangeGameState(GameState.GameEnd);
+            EventManager.Fire_OnGameEnd(transform);
         }
     }
+
+    
 
     
 }

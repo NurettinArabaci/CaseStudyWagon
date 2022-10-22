@@ -7,6 +7,7 @@ public enum GameState
     Begin,
     Play,
     Minigame,
+    GameEnd,
     Win,
     Lose
 }
@@ -51,6 +52,10 @@ public class GameManager : MonoSingleton<GameManager>
                 HandleMinigame();
                 break;
 
+            case GameState.GameEnd:
+                HandleMinigame();
+                break;
+
             case GameState.Win:
                 HandleWin();
                 break;
@@ -62,6 +67,10 @@ public class GameManager : MonoSingleton<GameManager>
             default:
                 break;
         }
+        if (gameState != GameState.Play)
+        {
+            TrainController.Instance.FuelActiveInactive(false);
+        }
     }
 
     
@@ -69,11 +78,18 @@ public class GameManager : MonoSingleton<GameManager>
     public void HandleBegin()
     {
         EventManager.Fire_OnBeginGame();
+
     }
 
     public void HandlePlay()
     {
         EventManager.Fire_OnPlayGame();
+        TrainController.Instance.FuelActiveInactive(true);
+    }
+
+    public void HandleGameEnd()
+    {
+        
     }
 
     public void HandleMinigame()
