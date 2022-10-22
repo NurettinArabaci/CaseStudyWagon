@@ -359,7 +359,7 @@ MonoBehaviour:
   fuelOilAmount: 100
   fuelOilFillAmount: {fileID: 7459716937774748278}
   fuelOilObj: {fileID: 3933897655545638193}
-  forwardSpeed: 5
+  forwardSpeed: 6
   sidewaysSpeed: 5
   mapBorder: 2
   inputAxis: {x: 0, y: 0}
