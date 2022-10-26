@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5678244036251311286}
-  - component: {fileID: 5678244036251311284}
+  - component: {fileID: 8051077355045801109}
   - component: {fileID: 5678244036251311287}
   m_Layer: 0
   m_Name: Stickman
@@ -33,7 +33,7 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &5678244036251311284
+--- !u!114 &8051077355045801109
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -42,10 +42,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 5678244036251311289}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c4fe0e781a06f4082a3aaf4eca99a647, type: 3}
+  m_Script: {fileID: 11500000, guid: eb6b553f7e7c244c1a0e2dae9dc6cb63, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  collectableType: 0
+  collectType: 0
 --- !u!65 &5678244036251311287
 BoxCollider:
   m_ObjectHideFlags: 0

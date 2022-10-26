@@ -26,13 +26,10 @@ public static partial class EventManager
     public static void Fire_OnChangeCarriage(GateType type) { OnChangeCarriage?.Invoke(type); }
 
 
-    public static event Action OnChoosedCoalGate;
-    public static void Fire_OnChoosedCoalGate() { OnChoosedCoalGate?.Invoke(); }
+    public static event Action OnChoosedCoalOrStickman;
+    public static void Fire_OnChoosedCoalOrStickman() { OnChoosedCoalOrStickman?.Invoke(); }
 
-    public static event Action OnChoosedStickmanGate;
-    public static void Fire_OnChoosedStickmanGate() { OnChoosedStickmanGate?.Invoke(); }
-
-
+   
     public static event Action OnLowHpPanel;
     public static void Fire_OnLowHpPanel() { OnLowHpPanel?.Invoke(); }
     

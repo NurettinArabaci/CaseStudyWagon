@@ -10,12 +10,13 @@ public class CameraController : MonoSingleton<CameraController>
     [SerializeField] CinemachineVirtualCamera playCam;
     [SerializeField] CinemachineVirtualCamera gameEndCam;
 
-    //Vector3 offset = new Vector3(0, 0.2f, -1.25f);
-    Vector3 offset = new Vector3(0, 0.1f, -0.8f);
+    Vector3 offset;
 
     protected override void Awake()
     {
         base.Awake();
+
+        offset = new Vector3(0, 0.1f, -0.8f);
 
         EventManager.OnBeginGame += OnStartGame;
         EventManager.OnPlayGame += OnPlayCam;

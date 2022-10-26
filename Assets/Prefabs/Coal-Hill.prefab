@@ -90,7 +90,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5220365902376880395}
-  - component: {fileID: 5220365902376880388}
+  - component: {fileID: 112761108495351925}
   - component: {fileID: 5220365902376880389}
   m_Layer: 0
   m_Name: Coal-Hill
@@ -114,7 +114,7 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &5220365902376880388
+--- !u!114 &112761108495351925
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -123,10 +123,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 5220365902376880390}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2b6dd1f803bf84f5e92c59264a7769f2, type: 3}
+  m_Script: {fileID: 11500000, guid: eb6b553f7e7c244c1a0e2dae9dc6cb63, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  collectableType: 0
+  collectType: 1
 --- !u!65 &5220365902376880389
 BoxCollider:
   m_ObjectHideFlags: 0

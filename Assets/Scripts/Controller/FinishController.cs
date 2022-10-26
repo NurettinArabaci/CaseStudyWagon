@@ -14,6 +14,8 @@ public class FinishController : MonoBehaviour
 
     void OnGameEnd(Transform _transform)
     {
+
+        CollectableEvents.Fire_OnMovementLerp();
         _transform.DOMove(gameEndFirstPoint.position, 2.5f).OnComplete(() =>
         GameStateEvent.Fire_OnChangeGameState(GameState.Win));
     }

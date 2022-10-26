@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class TrainColliderController : MonoBehaviour
 {
-    
+    [SerializeField] TrainController trainController;
 
     private void OnTriggerEnter(Collider coll)
     {
@@ -23,9 +23,11 @@ public class TrainColliderController : MonoBehaviour
         {
             StartCoroutine(gateController.ChangeGameStateCR());
 
-            if (gateController.gateType == GateType.StickmanGate) EventManager.Fire_OnChoosedStickmanGate();
+            EventManager.Fire_OnChoosedCoalOrStickman();
 
-            else if (gateController.gateType == GateType.CoalGate) EventManager.Fire_OnChoosedCoalGate();
+            if (gateController.gateType == GateType.StickmanGate) trainController.trainType=TrainType.peopleTrain;
+
+            else if (gateController.gateType == GateType.CoalGate) trainController.trainType = TrainType.coalTrain;
         }
         else if (coll.CompareTag("Finish"))
         {

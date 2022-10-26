@@ -18,6 +18,14 @@ public class Carriage : MonoBehaviour, ICollectable
 
     }
 
+    private void OnTriggerEnter(Collider coll)
+    {
+        if (coll.TryGetComponent(out GateController gateControl))
+        {
+            ChangeCarriageType(gateControl.gateType);
+        }
+    }
+
     public void ChangeCarriageType(GateType gateType)
     {
         switch (gateType)

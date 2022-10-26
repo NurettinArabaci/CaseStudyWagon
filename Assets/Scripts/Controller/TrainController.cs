@@ -3,9 +3,13 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
+public enum TrainType { peopleTrain, coalTrain };
+
 public class TrainController : MonoSingleton<TrainController>
 {
     Transform mT;
+
+    public TrainType trainType;
 
     [Header("FuelOil")]
     public float fuelOilAmount = 100f;
@@ -26,8 +30,8 @@ public class TrainController : MonoSingleton<TrainController>
     [SerializeField] Transform smokeVfx;
     [SerializeField] Transform smokeVfxPose;
 
-
-
+   
+    
     private float initFuelOil;
     
 
@@ -39,7 +43,7 @@ public class TrainController : MonoSingleton<TrainController>
         
     }
 
-    public void Update()
+   /* public void Update()
     {
         if (GameManager.Instance.gameState != GameState.Play) return;
 
@@ -51,6 +55,15 @@ public class TrainController : MonoSingleton<TrainController>
     {
         if (GameManager.Instance.gameState != GameState.Minigame) return;
         MiniGameMove();
+    }*/
+
+    public void Update()
+    {
+        if (GameManager.Instance.gameState == GameState.Play)
+            Movement();
+        else if (GameManager.Instance.gameState == GameState.Minigame)
+            MiniGameMove();
+
     }
 
     void Movement()
@@ -114,9 +127,11 @@ public class TrainController : MonoSingleton<TrainController>
     void MiniGameMove()
     {
         var currentPosition = mT.position;
-        currentPosition.z += Time.fixedDeltaTime * forwardSpeed;
+        currentPosition.z += Time.deltaTime * forwardSpeed;
 
         mT.position = currentPosition;
         smokeVfx.position = smokeVfxPose.position;
+
+        CollectableEvents.Fire_OnMovementLerp();
     }
 }

@@ -356,6 +356,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 24bbb989a7e174506bfe37a247772c53, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  trainType: 0
   fuelOilAmount: 100
   fuelOilFillAmount: {fileID: 7459716937774748278}
   fuelOilObj: {fileID: 3933897655545638193}
@@ -377,6 +378,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d9697d598a73d44feaa5ca34d0089e06, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  trainController: {fileID: 3933897656466029423}
 --- !u!65 &3933897656466029421
 BoxCollider:
   m_ObjectHideFlags: 0

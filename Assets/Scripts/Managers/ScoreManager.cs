@@ -12,14 +12,14 @@ public class ScoreManager : MonoSingleton<ScoreManager>
         base.Awake();
     }
 
-    public void PickUpObject(Stickman stickman=null, Coal coal=null)
+    public void PickUpObject(CollectedType collectedType)
     {
-        if (stickman!=null)
+        if (collectedType==CollectedType.Stickman)
         {
             stickmanScore++;
         }
 
-        if (coal!=null)
+        else if (collectedType == CollectedType.Coal)
         {
             coalScore++;
         }
